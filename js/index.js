@@ -37,3 +37,7 @@ var firebaseConfig =
         window.alert("Please fill out all fields")
     }
   });
+
+$("#btn-test").click(function() {
+    window.alert("Test logout")
+})

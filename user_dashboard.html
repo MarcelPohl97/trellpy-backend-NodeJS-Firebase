@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <title>TrellPy</title>
 </head>
 <body>
-    <h1>Sucessfully logged in</h1>
+    <h1>User Dashboard Page</h1>
+    <button id="btn-logout">Logout</button>
+    <button id="btn-test">Logout</button>
+    <script src="js/index.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) 
+        {
+            if(!user) 
+            {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+    <script>
+        $("#btn-logout").click(function()
+        {
+            firebase.auth().signOut();
+        });
+        firebase.auth().onAuthStateChanged(function(user) 
+        {
+            if(!user) 
+            {
+                window.location.href = "login.html"
+            }
+        });
+    </script>
 </body>
 </html>

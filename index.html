@@ -8,9 +8,18 @@
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <title>TrellPy</title>
 </head>
 <body>
-    
+    <h1>Landing Page</h1>
+    <button id="login-page">Login</button>
+    <script src="js/index.js"></script>
+    <script>
+        $("#login-page").click(function(){
+            window.location.href= "login.html"
+        })
+    </script>
 </body>
 </html>
