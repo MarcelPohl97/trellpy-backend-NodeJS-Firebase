@@ -38,6 +38,66 @@ var firebaseConfig =
     }
   });
 
-$("#btn-test").click(function() {
-    window.alert("Test logout")
-})
+  
+  $("#btn").click(function()
+  {
+      let email = $("#email").val();
+      let password = $("#password").val();
+      let confirm_pw = $("#confirmpassword").val();
+
+      if(email != "" && password != "" && confirm_pw != "")
+      {
+          if(password == confirm_pw)
+          {
+            let result = firebase.auth().createUserWithEmailAndPassword(email, password);
+
+            result.catch(function(error) 
+            {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+  
+                window.alert("Message : " + errorMessage);
+            });
+          }
+          else {
+              window.alert("Password didnt match confirm Password")
+          }
+      }
+      else 
+      {
+          window.alert("Please fill out all fields")
+      }
+  });
+
+
+
+ $("#btn-logout").click(function()
+ {
+     firebase.auth().signOut();
+ });
+
+ $("#pw-reset").click(function()
+ {
+    let auth = firebase.auth();
+    let email = $("#email").val();
+
+    if(email != "")
+    {
+        auth.sendPasswordResetEmail(email).then(function()
+        {
+            window.alert("Email has been sent to you")
+        })
+        .catch(function(error)
+        {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+  
+            window.alert("Message : " + errorMessage);
+        });
+    }
+    else 
+    {
+        window.alert("Email is empty")
+    }
+ });
+  
