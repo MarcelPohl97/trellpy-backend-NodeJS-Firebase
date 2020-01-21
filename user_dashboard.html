@@ -9,12 +9,14 @@
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <title>TrellPy</title>
 </head>
 <body>
     <h1>User Dashboard Page</h1>
     <button id="btn-logout">Logout</button>
+    <button id="user-setting">User Settings</button>
     <script src="js/index.js"></script>
     <script>
         firebase.auth().onAuthStateChanged(function(user) 
@@ -24,15 +26,10 @@
                 window.location.href = "login.html";
             }
         });
-    </script>
-    <script>
 
-        firebase.auth().onAuthStateChanged(function(user) 
+        $("#user-setting").click(function()
         {
-            if(!user) 
-            {
-                window.location.href = "login.html"
-            }
+            window.location.href = "user_dashboard.html"
         });
     </script>
 </body>

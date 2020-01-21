@@ -1,3 +1,4 @@
+
 var firebaseConfig = 
 {
     apiKey: "AIzaSyAmyCuK6ZtTuJ4AeX8sGYA0CbVV2V-zr78",
@@ -11,8 +12,12 @@ var firebaseConfig =
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
   firebase.analytics();
   firebase.auth.Auth.Persistence.LOCAL;
+  db.collection('user').get().then((snapshot) => {
+      console.log(snapshot.docs);
+  })
 
 
   $("#btn-login").click(function()
@@ -101,3 +106,40 @@ var firebaseConfig =
     }
  });
   
+ $("#btn-update").click(function()
+ {
+     let phone = $("#phone").val();
+
+     let rootRef = firebase.database().ref().child("Users")
+     let userID = firebase.auth().currentUser.uid;
+     let usersRef = rootRef.child(userID);
+     db.collection("user").add({
+        name: "Tokyo",
+        country: "Japan"
+    });
+     
+
+     if(phone != "")
+     {
+        let userData = 
+        {
+            "phone": phone
+        };
+
+        usersRef.set(userData, (error) => 
+        {
+            if(error)
+            {
+                window.alert(error.message)
+            }
+            else 
+            {
+                window.location.href = "user_dashboard.html"
+            }
+        })
+     }
+     else 
+     {
+         window.alert("Form is incomplete.")
+     }
+ });

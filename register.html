@@ -19,13 +19,24 @@
     <button id="btn">Register</button>
     <button id="login-page">Login</button>
     <button id="home-page">Home</button>
+    <button id="forgot-password">Forgot Password</button>
     <script src="js/index.js" type="text/javascript"></script>
     <script>
         firebase.auth().onAuthStateChanged(function(user) 
         {
             if(user) 
             {
-                window.location.href = "user_dashboard.html"
+                let userID = firebase.auth().currentUser.uid;
+                firebase.database().ref('Users/' + userID).once('value').then((snapshot) => {
+                    if(snapshot.val())
+                    {
+                        window.location.href = "user_dashboard.html"
+                    }
+                    else 
+                    {
+                        window.location.href = "accountSettings.html"
+                    }
+                })
             }
         });
 
@@ -35,6 +46,11 @@
 
         $("#login-page").click(function() {
             window.location.href = "login.html"
+        })
+
+        $("#forgot-password").click(function()
+        {
+            window.location.href = "forgot_password.html"
         })
 
     </script>
